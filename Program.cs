@@ -22,10 +22,6 @@ public class Program
 class GithubActivity
 {
     JsonSerializerOptions jsonOptions = new(){ PropertyNameCaseInsensitive = true };
-    public GithubActivity()
-    {
-        
-    }
 
     public void GetActivity(string username)
     {
@@ -34,7 +30,6 @@ class GithubActivity
         HttpResponseMessage response = api.SendRequest(); 
         StreamReader reader = new(response.Content.ReadAsStream());
         string content = reader.ReadToEnd();
-
         var jsonContent = JsonSerializer.Deserialize<List<GitUser>>(content, jsonOptions);
 
         if (jsonContent == null)
@@ -44,10 +39,40 @@ class GithubActivity
         }
         for (int i = 0; i < jsonContent.Count; i++)
         {
-            Console.WriteLine(jsonContent[i].Type);
-            Console.WriteLine(jsonContent[i].Id);
+            GitUser gitUser = jsonContent[i];
+            if (gitUser.Payload == null || gitUser.Repo == null)
+                continue;
+            switch (gitUser.Type)
+            {
+                case "PushEvent":
+                    DisplayPush(gitUser);
+                    break;
+                case "CreateEvent":
+                    DisplayCreate(gitUser);
+                    break;
+                default:
+                    Console.WriteLine(gitUser.Type);
+                    break;
+            }
         }
-        //Console.WriteLine(content);
+    }
+
+    void DisplayPush(GitUser gitUser)
+    {
+        if (gitUser.Payload == null || gitUser.Repo == null)
+        {
+            return;
+        }
+        string commitW = (gitUser.Payload.Size == 1) ? "commit" : "commits";
+        Console.WriteLine($"Pushed {gitUser.Payload.Size} {commitW} to {gitUser.Repo.Name}");
+    }
+
+    void DisplayCreate(GitUser gitUser)
+    {
+        if (gitUser.Repo == null)
+            return;
+        Console.WriteLine($"Created new repo {gitUser.Repo.Name}");
+
     }
 }
 

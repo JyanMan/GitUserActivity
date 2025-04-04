@@ -12,3 +12,4 @@ C:\Users\Admin\OneDrive\Desktop\Jian J files\Programming\c#\GithubUserActivity\o
 C:\Users\Admin\OneDrive\Desktop\Jian J files\Programming\c#\GithubUserActivity\obj\Debug\net9.0\GithubUserActivity.pdb
 C:\Users\Admin\OneDrive\Desktop\Jian J files\Programming\c#\GithubUserActivity\obj\Debug\net9.0\GithubUserActivity.genruntimeconfig.cache
 C:\Users\Admin\OneDrive\Desktop\Jian J files\Programming\c#\GithubUserActivity\obj\Debug\net9.0\ref\GithubUserActivity.dll
+C:\Users\Admin\OneDrive\Desktop\Jian J files\Programming\c#\GithubUserActivity\obj\Debug\net9.0\GithubUserActivity.sourcelink.json
