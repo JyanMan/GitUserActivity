@@ -19,4 +19,9 @@ public static class DisplayEvent
         Console.WriteLine($"Created new repo {gitUser.Repo.Name}");
 
     }
+
+    public static void Pull(GitUser gitUser)
+    {
+
+    }
 }

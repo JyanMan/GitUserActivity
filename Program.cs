@@ -28,6 +28,12 @@ class GithubActivity
         string url = $"https://api.github.com/users/{username}/events";
         ApiHandler api = new () { Url = url };
         HttpResponseMessage response = api.SendRequest(); 
+        if ((int)response.StatusCode == 404) //status NotFound
+        {
+            Console.WriteLine($"The github username {username} does not exists");
+            return;
+        }
+
         StreamReader reader = new(response.Content.ReadAsStream());
         string content = reader.ReadToEnd();
         var jsonContent = JsonSerializer.Deserialize<List<GitUser>>(content, jsonOptions);
