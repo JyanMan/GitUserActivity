@@ -21,7 +21,7 @@ public class Program
 
 class GithubActivity
 {
-    JsonSerializerOptions jsonOptions = new(){ PropertyNameCaseInsensitive = true };
+    readonly JsonSerializerOptions jsonOptions = new(){ PropertyNameCaseInsensitive = true };
 
     public void GetActivity(string username)
     {
@@ -45,10 +45,10 @@ class GithubActivity
             switch (gitUser.Type)
             {
                 case "PushEvent":
-                    DisplayPush(gitUser);
+                    DisplayEvent.Push(gitUser);
                     break;
                 case "CreateEvent":
-                    DisplayCreate(gitUser);
+                    DisplayEvent.Create(gitUser);
                     break;
                 default:
                     Console.WriteLine(gitUser.Type);
@@ -56,23 +56,4 @@ class GithubActivity
             }
         }
     }
-
-    void DisplayPush(GitUser gitUser)
-    {
-        if (gitUser.Payload == null || gitUser.Repo == null)
-        {
-            return;
-        }
-        string commitW = (gitUser.Payload.Size == 1) ? "commit" : "commits";
-        Console.WriteLine($"Pushed {gitUser.Payload.Size} {commitW} to {gitUser.Repo.Name}");
-    }
-
-    void DisplayCreate(GitUser gitUser)
-    {
-        if (gitUser.Repo == null)
-            return;
-        Console.WriteLine($"Created new repo {gitUser.Repo.Name}");
-
-    }
 }
-
