@@ -30,7 +30,7 @@ To see more regarding the github events, see https://github.com/JyanMan/GitUserA
 
 - in linux: `./GithubUserActivity <github-username>`
 
-For example:
+### Sample Usage:
    `GithubUserActivity.exe JyanMan`
 
    this will show all my recent activities
