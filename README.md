@@ -1,5 +1,6 @@
 # Github User Activity
-A software recommended to be made https://roadmap.sh/projects/github-user-activity
+A software made in c# .net 9.0.
+A project idea from: https://roadmap.sh/projects/github-user-activity
 
 ## Features
 Lets you list down the recent activities of a github user
