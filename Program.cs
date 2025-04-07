@@ -45,35 +45,40 @@ class GithubActivity
         for (int i = 0; i < jsonContent.Count; i++)
         {
             GitUser gitUser = jsonContent[i];
-            if (gitUser.Payload == null || gitUser.Repo == null)
-                continue;
-            switch (gitUser.Type)
-            {
-                case "PushEvent":
-                    DisplayEvent.Push(gitUser);
-                    break;
-                case "CreateEvent":
-                    DisplayEvent.Create(gitUser);
-                    break;
-                case "PullRequestEvent":
-                    DisplayEvent.Pull(gitUser);
-                    break;
-                case "MemberEvent":
-                    DisplayEvent.Member(gitUser);
-                    break;
-                case "IssueCommentEvent":
-                    DisplayEvent.IssueComment(gitUser);
-                    break;
-                case "ForkEvent":
-                    DisplayEvent.Fork(gitUser);
-                    break;
-                case "IssuesEvent":
-                    DisplayEvent.Issue(gitUser);
-                    break;
-                default:
-                    Console.WriteLine(gitUser.Type);
-                    break;
-            }
+            DisplayActivity(gitUser);
+        }
+    }
+
+    public static void DisplayActivity(GitUser gitUser)
+    {
+        if (gitUser.Payload == null || gitUser.Repo == null)
+            return;
+        switch (gitUser.Type)
+        {
+            case "PushEvent":
+                DisplayEvent.Push(gitUser);
+                break;
+            case "CreateEvent":
+                DisplayEvent.Create(gitUser);
+                break;
+            case "PullRequestEvent":
+                DisplayEvent.Pull(gitUser);
+                break;
+            case "MemberEvent":
+                DisplayEvent.Member(gitUser);
+                break;
+            case "IssueCommentEvent":
+                DisplayEvent.IssueComment(gitUser);
+                break;
+            case "ForkEvent":
+                DisplayEvent.Fork(gitUser);
+                break;
+            case "IssuesEvent":
+                DisplayEvent.Issue(gitUser);
+                break;
+            default:
+                Console.WriteLine(gitUser.Type);
+                break;
         }
     }
 }
