@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Text.Json;
-using System.Net.Http.Headers;
-using System.Collections;
+﻿using System.Text.Json;
 
 namespace Program;
 
@@ -43,6 +40,8 @@ class GithubActivity
             Console.WriteLine("jsonContent is null");
             return;
         }
+
+        //display the activities
         for (int i = 0; i < jsonContent.Count; i++)
         {
             GitUser gitUser = jsonContent[i];
@@ -55,6 +54,21 @@ class GithubActivity
                     break;
                 case "CreateEvent":
                     DisplayEvent.Create(gitUser);
+                    break;
+                case "PullRequestEvent":
+                    DisplayEvent.Pull(gitUser);
+                    break;
+                case "MemberEvent":
+                    DisplayEvent.Member(gitUser);
+                    break;
+                case "IssueCommentEvent":
+                    DisplayEvent.IssueComment(gitUser);
+                    break;
+                case "ForkEvent":
+                    DisplayEvent.Fork(gitUser);
+                    break;
+                case "IssuesEvent":
+                    DisplayEvent.Issue(gitUser);
                     break;
                 default:
                     Console.WriteLine(gitUser.Type);

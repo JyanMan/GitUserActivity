@@ -16,12 +16,19 @@ public class Repository
 public class Payload
 {
     public int Size { get; set; }
+    public Member? Member { get; set; }
+    public Forkee? Forkee { get; set; } 
+    public string? Action { get; set; }
 }
 
-public class Actor
+public class Forkee
 {
-    public required int ID { get; set; }
-    public required string Login { get; set; }
-    public required string DisplayLogin { get; set; }
+    public string? Full_Name { get; set; }
+}
+
+public class Member
+{
+    public string? Login { get; set; }
+    
 }
 
