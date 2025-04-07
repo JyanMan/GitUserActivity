@@ -1,6 +1,6 @@
 #Github User Activity Getter
 This is a software that lets you list the recent activities of a github account
-A software recommended to be made from roadmap.sh
+A software recommended to be made https://roadmap.sh/projects/github-user-activity
 
 ##How to use
 1. first navigate to bin/Release/net9.0/publish
